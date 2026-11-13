@@ -72,10 +72,9 @@ describe("toExcalidraw", () => {
     expect(file.elements.some((e) => e.type === "line")).toBe(true);
   });
 
-  it("signs the drawing with a faint watermark", async () => {
+  it("carries no watermark (Probemas fork)", async () => {
     const { elements } = await convert("comparison");
-    const mark = elements.find((e) => e.text === WATERMARK)!;
-    expect(mark.opacity).toBeLessThan(50);
+    expect(elements.find((e) => e.text === WATERMARK)).toBeUndefined();
   });
 });
 

@@ -75,7 +75,9 @@ export function serveHttp(port: number, newServer: () => McpServer): void {
     }
   }, 60_000).unref();
 
-  http.listen(port, () => console.error(`sketchy: MCP server on http://localhost:${port}/mcp`));
+  // Probemas fork: loopback only unless SKETCHY_HOST says otherwise; the server has no authentication.
+  const host = process.env.SKETCHY_HOST?.trim() || "127.0.0.1";
+  http.listen(port, host, () => console.error(`sketchy: MCP server on http://${host}:${port}/mcp`));
 }
 
 function header(req: IncomingMessage, name: string): string | undefined {

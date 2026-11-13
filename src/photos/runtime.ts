@@ -49,6 +49,11 @@ async function install(dir: string): Promise<void> {
     `${JSON.stringify({ private: true, type: "module" })}\n`,
   );
   writeFileSync(join(dir, "index.mjs"), `export * from "${PACKAGE}";\n`);
+  // Probemas fork: no package installs at run time unless explicitly allowed.
+  if (process.env.SKETCHY_ALLOW_RUNTIME_INSTALL !== "1")
+    throw new Error(
+      `${PACKAGE} is not installed. Install it yourself, or set SKETCHY_ALLOW_RUNTIME_INSTALL=1.`,
+    );
   const spec = `${PACKAGE}@${requiredRange()}`;
   console.error(`sketchy: installing ${spec} for photo labeling into ${dir}`);
   await new Promise<void>((resolve, reject) => {

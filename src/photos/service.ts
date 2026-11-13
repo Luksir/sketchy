@@ -82,6 +82,9 @@ export class PhotoService {
 
   /** Downloads (once) a JPEG of at most 1280 px width and returns its path. */
   async localFile(id: string): Promise<{ path: string; width: number; height: number }> {
+    // Probemas fork: only ids find_image stored, and only plain file names, so an id cannot leave the cache folder.
+    if (!/^[A-Za-z0-9_-]+$/.test(id)) throw new SceneError(`Unknown image "${id}". Use an id returned by find_image.`);
+    this.candidate(id);
     const dir = join(this.dataDir, "images");
     const path = join(dir, `${id}.jpg`);
     const sharp = (await import("sharp")).default;

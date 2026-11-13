@@ -1,9 +1,9 @@
 {
   "mcpServers": {
     "sketchy": {
-      "command": "npx",
-      "args": ["-y", "@ddkbs/sketchy@latest"],
-      "env": { "SKETCHY_TERMINAL": "1" }
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/../dist/index.js"],
+      "env": { "SKETCHY_TERMINAL": "1", "SKETCHY_PHOTOS": "off" }
     }
   }
 }

@@ -96,7 +96,8 @@ export function renderScene(scene: LaidOutScene, fontCss: string): RenderedScene
   for (const wire of scene.wires) add(wiresLayer, wire.id, "wire", (g) => drawWire(g, pen, wire));
   for (const label of scene.labels)
     add(labelsLayer, label.id, "label", (g) => drawLabel(g, pen, label));
-  drawWatermark(svg, scene);
+  // Probemas fork: no watermark in drawings used for our own videos (MIT; licence kept in LICENSE).
+  void drawWatermark;
 
   return { svg, elements, overlay, pen, figures };
 }

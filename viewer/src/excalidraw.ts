@@ -275,13 +275,7 @@ export function toExcalidraw(scene: LaidOutScene, now = Date.now(), marks: Mark[
     });
   });
 
-  text(
-    "sketchy-watermark",
-    [WATERMARK],
-    { x: scene.width - 92, y: scene.height - 26, width: 78, height: 22 },
-    18,
-    { opacity: 40, link: "https://sketchy.davidkubus.dev" },
-  );
+  // Probemas fork: the export carries no watermark element.
 
   return JSON.stringify(
     {

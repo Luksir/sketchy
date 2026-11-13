@@ -1,9 +1,9 @@
 {
   "mcpServers": {
     "sketchy": {
-      "command": "npx",
-      "args": ["-y", "@ddkbs/sketchy"],
-      "env": { "SKETCHY_EDITOR": "cursor" }
+      "command": "node",
+      "args": ["/home/probemas/projects/sketchy-probemas-20261113/dist/index.js"],
+      "env": { "SKETCHY_EDITOR": "cursor", "SKETCHY_PHOTOS": "off" }
     }
   }
 }

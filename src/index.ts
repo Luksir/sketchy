@@ -25,7 +25,8 @@ const { values } = parseArgs({
 const parts = await PartIndex.load();
 const editor = parseEditor(setting("SKETCHY_EDITOR"));
 // Photo grounding needs a local model, so remote deployments leave it off.
-const photosEnabled = (setting("SKETCHY_PHOTOS") ?? (values.http ? "off" : "on")) !== "off";
+// Probemas fork: photos are opt-in (SKETCHY_PHOTOS=on); they fetch from the internet and run a local model.
+const photosEnabled = setting("SKETCHY_PHOTOS") === "on";
 const dataDir = defaultDataDir();
 const photos = photosEnabled ? await openPhotos(dataDir) : undefined;
 
